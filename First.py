@@ -1,28 +1,22 @@
-from zipfile import ZipFile
-import datatime
+import zipfile
+import time
+import os
+import shutil
+import sys
 
 
-
-
-inputfile = "loc.txt"
+inputfile = "location.txt"
 outputfile = "log.txt"
 
+f1 = open(inputfile, mode='r', encoding='utf_8')
+f2 = open(outputfile, mode='a', encoding= 'utf_8')
+name_zip = str(time.strftime("%Y%m%d-%H%M%S")) + ".zip"
+zip = zipfile.ZipFile(name_zip, 'w')
+for num, line in enumerate(f1, 1):
+    zip.write(line.strip(), compress_type=zipfile.ZIP_DEFLATED)
 
-
-fi = open(inputfile, mode='r', encoding='latina_1')
-fo = open(outputfile, mode='a', encoding= 'latina_1')
-
-zip = ZipFile('.zip', 'w')    # name now funk
-for x in fi:
-    zip.write(fi)
 
 zip.close()
 
-
-
-
-
-
-fo.write()
-fi.close()
-fo.close()
+f1.close()
+f2.close()
